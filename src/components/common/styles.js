@@ -5,6 +5,7 @@ const { Content: AntContent } = AntLayout;
 
 export const IconWrapper = styled.span`
   margin-right: 0.25rem;
+  font-size: 1.125rem;
 `;
 
 export const Content = styled(({ children, ...props }) =>

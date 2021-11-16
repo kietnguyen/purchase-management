@@ -1,4 +1,10 @@
-import { CheckCircleFilled, DeleteOutlined, EditOutlined, ImportOutlined } from '@ant-design/icons';
+import {
+  CheckCircleFilled,
+  DeleteOutlined,
+  DollarCircleOutlined,
+  EditOutlined,
+  ShoppingCartOutlined,
+} from '@ant-design/icons';
 import { Col, List as AntList, Progress, Row, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -34,8 +40,14 @@ const itemUsageProgress = (current, total) => {
   );
 };
 
-const itemDescription = (purchasedAt) => (
-  <span><IconWrapper><ImportOutlined /></IconWrapper>{dateFormatter(purchasedAt)}</span>
+const itemDescription = (item) => (
+  <>
+    <IconWrapper><ShoppingCartOutlined /></IconWrapper>
+    Purchased: {dateFormatter(item.purchasedAt)}
+    <br />
+    <IconWrapper><DollarCircleOutlined /></IconWrapper>
+    Service cost: {priceFormatter(item.serviceCost, { precision: 2 })}
+  </>
 );
 
 const itemDetail = (item) => {
@@ -50,7 +62,7 @@ const itemDetail = (item) => {
       <Item.Meta
         avatar={itemUsageProgress(item.currentUsage, item.expectedUsage)}
         title={item.name}
-        description={itemDescription(item.purchasedAt)}
+        description={itemDescription(item)}
       />
       <PriceWrapper>{priceFormatter(item.price)}</PriceWrapper>
     </Item>
