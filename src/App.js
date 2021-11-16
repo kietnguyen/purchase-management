@@ -1,3 +1,4 @@
+import { Divider } from 'antd';
 import './App.less';
 import History from './components/History';
 import Layout from './components/Layout';
@@ -8,7 +9,9 @@ function App() {
   return (
     <Layout>
       <Overview />
+      <Divider />
       <History />
+      <Divider />
       <Purchase />
     </Layout>
   );
