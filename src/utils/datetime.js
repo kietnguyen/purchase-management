@@ -1,8 +1,5 @@
-import dayjs from 'dayjs';
-
-const relativeTime = require('dayjs/plugin/relativeTime');
-dayjs.extend(relativeTime)
+import moment from 'moment';
 
 export const dateFormat = 'YYYY-MM-DD';
 
-export const dateFormatter = (timestamp) => dayjs.unix(timestamp).fromNow();
+export const dateFormatter = (timestamp) => moment.unix(timestamp).fromNow();
