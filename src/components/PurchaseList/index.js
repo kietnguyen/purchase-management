@@ -1,5 +1,6 @@
 import { Col, List as AntList, Row, Typography } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getPurchases } from '../../actions/purchases';
 import { Content } from '../common/styles';
@@ -17,37 +18,14 @@ const List = styled(({ children, ...props }) =>
   }
 `;
 
-const data = [
-  {
-    id: 1,
-    name: 'Food Processor',
-    price: 100,
-    serviceCost: 1,
-    currentUsage: 5,
-    expectedUsage: 100,
-    purchasedAt: 1636709651,
-  },
-  {
-    id: 2,
-    name: 'eReader',
-    price: 200,
-    serviceCost: 0.25,
-    currentUsage: 300,
-    expectedUsage: 400,
-    purchasedAt: 1605519251,
-  },
-  {
-    id: 3,
-    name: 'Tablet',
-    price: 150,
-    serviceCost: 0.25,
-    currentUsage: 625,
-    expectedUsage: 600,
-    purchasedAt: 1542360851,
-  },
-];
-
 const PurchaseList = () => {
+  const purchases = useSelector((state) => state.purchases);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPurchases());
+  }, [dispatch]);
+
   return (
     <Content>
       <Title level={2}>History</Title>
@@ -56,7 +34,7 @@ const PurchaseList = () => {
           <List
             bordered
             itemLayout='horizontal'
-            dataSource={data}
+            dataSource={purchases}
             renderItem={(item) => <PurchaseItem key={item.id} item={item} />}
           />
         </Col>
