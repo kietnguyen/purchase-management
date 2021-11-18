@@ -30,15 +30,21 @@ const itemUsageProgress = (current, total) => {
   );
 };
 
-const itemDescription = (item) => (
-  <>
-    <IconWrapper><ShoppingCartOutlined /></IconWrapper>
-    Purchased: {dateFormatter(item.purchasedAt)}
-    <br />
-    <IconWrapper><DollarCircleOutlined /></IconWrapper>
-    Usage cost: {priceFormatter(item.usageCost, { precision: 2 })}
-  </>
-);
+const itemDescription = (item) => {
+  const remainingUses = item.expectedUses - item.currentUses;
+  return (
+    <span style={{ verticalAlign: 'middle' }}>
+      <IconWrapper><ShoppingCartOutlined /></IconWrapper>
+      <span>Purchased: {dateFormatter(item.purchasedAt)}</span>
+      <br />
+      <IconWrapper><DollarCircleOutlined /></IconWrapper>
+      {remainingUses > 0 ?
+        <span>Remaining uses: {remainingUses}</span> :
+        <span>Enjoy it while it lasts!!!</span>}
+    </span>
+
+    )
+};
 
 const PurchaseItem = ({ item, ...props }) => {
   return (
@@ -50,7 +56,7 @@ const PurchaseItem = ({ item, ...props }) => {
       {...props}
     >
       <Item.Meta
-        avatar={itemUsageProgress(item.currentUsage, item.expectedUsage)}
+        avatar={itemUsageProgress(item.currentUses, item.expectedUses)}
         title={item.name}
         description={itemDescription(item)}
       />

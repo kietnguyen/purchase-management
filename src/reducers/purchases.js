@@ -6,8 +6,8 @@ const initialState = [
     name: 'Food Processor',
     price: 100,
     usageCost: 1,
-    currentUsage: 5,
-    expectedUsage: 100,
+    currentUses: 5,
+    expectedUses: 100,
     purchasedAt: 1636709651,
   },
   {
@@ -15,8 +15,8 @@ const initialState = [
     name: 'eReader',
     price: 200,
     usageCost: 0.25,
-    currentUsage: 300,
-    expectedUsage: 400,
+    currentUses: 300,
+    expectedUses: 400,
     purchasedAt: 1605519251,
   },
   {
@@ -24,8 +24,8 @@ const initialState = [
     name: 'Tablet',
     price: 150,
     usageCost: 0.25,
-    currentUsage: 625,
-    expectedUsage: 600,
+    currentUses: 625,
+    expectedUses: 600,
     purchasedAt: 1542360851,
   },
 ];

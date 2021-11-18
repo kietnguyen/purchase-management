@@ -5,8 +5,8 @@
       "name": "Food Processor",
       "price": 100,
       "serviceCost": 1,
-      "currentUsage": 5,
-      "expectedUsage": 100,
+      "currentUses": 5,
+      "expectedUses": 100,
       "purchasedAt": 1636709651
     },
     {
@@ -14,8 +14,8 @@
       "name": "eReader",
       "price": 200,
       "serviceCost": 0.25,
-      "currentUsage": 300,
-      "expectedUsage": 400,
+      "currentUses": 300,
+      "expectedUses": 400,
       "purchasedAt": 1605519251
     },
     {
@@ -23,8 +23,8 @@
       "name": "Tablet",
       "price": 150,
       "serviceCost": 0.25,
-      "currentUsage": 625,
-      "expectedUsage": 600,
+      "currentUses": 625,
+      "expectedUses": 600,
       "purchasedAt": 1542360851
     }
   ]
