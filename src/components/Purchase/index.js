@@ -52,6 +52,8 @@ const Purchase = () => {
       name,
       price: parseFloat(price),
       usageCost: parseFloat(usageCost),
+      currentUses: 0,
+      expectedUses: Math.ceil(price / usageCost),
       purchasedAt: moment(purchasedDate).format('X'),
     }));
 

@@ -42,8 +42,7 @@ const itemDescription = (item) => {
         <span>Remaining uses: {remainingUses}</span> :
         <span>Enjoy it while it lasts!!!</span>}
     </span>
-
-    )
+  );
 };
 
 const PurchaseItem = ({ item, ...props }) => {
