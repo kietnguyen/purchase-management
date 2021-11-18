@@ -36,7 +36,7 @@ const itemDescription = (item) => (
     Purchased: {dateFormatter(item.purchasedAt)}
     <br />
     <IconWrapper><DollarCircleOutlined /></IconWrapper>
-    Service cost: {priceFormatter(item.serviceCost, { precision: 2 })}
+    Usage cost: {priceFormatter(item.usageCost, { precision: 2 })}
   </>
 );
 
