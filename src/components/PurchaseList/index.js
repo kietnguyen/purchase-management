@@ -99,8 +99,7 @@ const data = [
   },
 ];
 
-const History = () => {
-
+const PurchaseList = () => {
   return (
     <Content>
       <Title level={2}>History</Title>
@@ -118,4 +117,5 @@ const History = () => {
 
   );
 };
-export default History;
+
+export default PurchaseList;
