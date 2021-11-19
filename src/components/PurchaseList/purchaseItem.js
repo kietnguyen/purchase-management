@@ -1,5 +1,6 @@
 import {
   CheckCircleFilled,
+  CheckCircleOutlined,
   DeleteOutlined,
   DollarCircleOutlined,
   EditOutlined,
@@ -7,17 +8,18 @@ import {
 } from '@ant-design/icons';
 import { List as AntList, Progress, Typography } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { priceFormatter } from '../../utils/currency';
+import { addProductUse } from '../../actions/purchases';
 import { dateFormatter } from '../../utils/datetime';
 import { IconWrapper } from '../common/styles';
 
 const { Link } = Typography;
 const { Item } = AntList;
 
-const PriceWrapper = styled.div`
-  margin-left: 8px;
-  margin-right: 16px;
+const UseIcon = styled(CheckCircleOutlined)`
+  font-size: 1.5rem;
+  color: #1890ff;
 `;
 
 const itemUsageProgress = (current, total) => {
@@ -26,7 +28,7 @@ const itemUsageProgress = (current, total) => {
   return (
     percent >= 100 ?
       <CheckCircleFilled style={{ fontSize: '24px', color: '#1da57a' }} /> :
-      <Progress type='circle' percent={percent} width={24} strokeWidth={16} showInfo={false} />
+      <Progress type='circle' percent={percent} width={24} strokeWidth={12} showInfo={false} />
   );
 };
 
@@ -46,6 +48,10 @@ const itemDescription = (item) => {
 };
 
 const PurchaseItem = ({ item, ...props }) => {
+  const dispatch = useDispatch();
+
+  const onClick = () => dispatch(addProductUse(item.id));
+
   return (
     <Item
       actions={[
@@ -59,7 +65,7 @@ const PurchaseItem = ({ item, ...props }) => {
         title={item.name}
         description={itemDescription(item)}
       />
-      <PriceWrapper>{priceFormatter(item.price)}</PriceWrapper>
+      <UseIcon onClick={onClick} />
     </Item>
   );
 };

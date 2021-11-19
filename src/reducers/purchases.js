@@ -15,7 +15,7 @@ const initialState = [
     name: 'eReader',
     price: 200,
     usageCost: 0.25,
-    currentUses: 300,
+    currentUses: 375,
     expectedUses: 400,
     purchasedAt: 1605519251,
   },
@@ -36,6 +36,14 @@ const purchasesReducer = (state = initialState, action) => {
       return state;
     case types.ADD_PURCHASE:
       return state.concat(action.payload);
+    case types.ADD_PRODUCT_USE:
+      const { id } = action.payload;
+
+      const newPurchases = [...state];
+      const purchase = newPurchases.find((purchase) => purchase.id === id);
+      purchase.currentUses++;
+
+      return newPurchases;
     default:
       return state;
   }
