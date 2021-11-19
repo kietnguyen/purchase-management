@@ -2,7 +2,7 @@ import { Col, List as AntList, Row, Typography } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { getPurchases } from '../../actions/purchases';
+import { fetchPurchases } from '../../actions/purchases';
 import { Content } from '../common/styles';
 import PurchaseItem from './purchaseItem';
 
@@ -23,7 +23,7 @@ const PurchaseList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPurchases());
+    dispatch(fetchPurchases());
   }, [dispatch]);
 
   return (
