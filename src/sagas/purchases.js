@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLeading } from 'redux-saga/effects';
 import { getPurchases, types } from '../actions/purchases';
 
 function* fetchPurchases() {
@@ -12,5 +12,5 @@ function* fetchPurchases() {
 }
 
 export default function* purchasesSaga() {
-  yield takeLatest(types.FETCH_PURCHASES, fetchPurchases);
+  yield takeLeading(types.FETCH_PURCHASES, fetchPurchases);
 }
