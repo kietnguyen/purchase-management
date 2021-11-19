@@ -3,7 +3,7 @@ import './App.less';
 import PurchaseList from './components/PurchaseList';
 import Layout from './components/Layout';
 import Overview from './components/Overview';
-import Purchase from './components/Purchase';
+import PurchaseForm from './components/PurchaseForm';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Divider />
       <PurchaseList />
       <Divider />
-      <Purchase />
+      <PurchaseForm />
     </Layout>
   );
 }

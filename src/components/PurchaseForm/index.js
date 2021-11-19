@@ -34,7 +34,7 @@ const CenterContainer = styled.div`
   justify-content: center;
 `;
 
-const Purchase = () => {
+const PurchaseForm = () => {
   const dispatch = useDispatch();
 
   const today = moment();
@@ -125,4 +125,4 @@ const Purchase = () => {
   );
 };
 
-export default Purchase;
+export default PurchaseForm;
