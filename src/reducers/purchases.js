@@ -3,10 +3,9 @@ import { types } from '../actions/purchases';
 const purchasesReducer = (state = [], action) => {
   switch (action.type) {
     case types.GET_PURCHASES:
-      const { purchases } = action.payload;
-      return purchases;
+      return action.payload.purchases;
     case types.ADD_PURCHASE:
-      return state.concat(action.payload);
+      return state.concat(action.payload.purchase);
     case types.ADD_PRODUCT_USE:
       const { id } = action.payload;
 

@@ -6,7 +6,7 @@ export const types = {
 };
 
 export const addPurchase = (purchase) => {
-  return { type: types.ADD_PURCHASE, payload: { ...purchase } };
+  return { type: types.ADD_PURCHASE, payload: { purchase } };
 };
 
 export const addProductUse = (id) => {
