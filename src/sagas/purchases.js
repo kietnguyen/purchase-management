@@ -31,6 +31,15 @@ function* fetchPurchases() {
   }
 }
 
+function* removePurchase({ payload }) {
+  try {
+    const { id } = payload;
+    yield call(axios.delete, `${SERVER}/purchases/${id}`);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 function* updatePurchase({ payload }) {
   try {
     const { purchase } = payload;
@@ -43,6 +52,7 @@ function* updatePurchase({ payload }) {
 export default function* purchasesSaga() {
   yield takeLeading(types.ADD_PURCHASE, addPurchase);
   yield takeLatest(types.ADD_PRODUCT_USE, addProductUse);
+  yield takeLatest(types.REMOVE_PURCHASE, removePurchase);
   yield takeLeading(types.FETCH_PURCHASES, fetchPurchases);
   yield takeLatest(types.UPDATE_PURCHASE, updatePurchase);
 }

@@ -53,6 +53,13 @@ app.put('/purchases/:id', (req, res) => {
   res.status(200).send(purchase);
 });
 
+app.delete('/purchases/:id', (req, res) => {
+  const id = req.params.id;
+  delete(purchases[id]);
+
+  res.status(200);
+});
+
 app.listen(4001, () => {
   console.log('Listening to port 4001');
 });

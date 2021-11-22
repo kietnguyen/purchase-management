@@ -8,6 +8,7 @@ import { Space, Typography } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { editPurchase } from '../../actions/purchase';
+import { removePurchase } from '../../actions/purchases';
 import { dateFormatter } from '../../utils/datetime';
 import { IconWrapper } from '../common/styles';
 
@@ -29,7 +30,7 @@ const PurchaseItemDescription = ({ item }) => {
       <br />
       <Space size='large'>
         <Link onClick={() => dispatch(editPurchase(item))}><EditOutlined /> Edit</Link>
-        <Link onClick={() => { console.log('onDelete');}}><DeleteOutlined /> Delete</Link>
+        <Link onClick={() => dispatch(removePurchase(item.id))}><DeleteOutlined /> Delete</Link>
       </Space>
     </span>
   );
