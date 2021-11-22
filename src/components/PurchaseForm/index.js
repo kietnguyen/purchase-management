@@ -61,7 +61,7 @@ const PurchaseForm = () => {
       usageCost: formPurchase.usageCost,
       purchasedAt: parseInt(moment(formPurchase.purchasedDate).format('X')),
       currentUses: purchase.currentUses || 0,
-      expectedUses: purchase.expectedUses || Math.ceil(formPurchase.price / formPurchase.usageCost),
+      expectedUses: Math.ceil(formPurchase.price / formPurchase.usageCost),
     };
     if (isEmpty(purchase)) {
       dispatch(addPurchase(combinedPurchase));
