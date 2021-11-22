@@ -9,7 +9,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { editPurchase } from '../../actions/purchase';
 import { removePurchase } from '../../actions/purchases';
-import { dateFormatter } from '../../utils/datetime';
+import { relativeDate } from '../../utils/datetime';
 import { IconWrapper } from '../common/styles';
 
 const { Link } = Typography;
@@ -21,7 +21,7 @@ const PurchaseItemDescription = ({ item }) => {
   return (
     <span style={{ verticalAlign: 'middle' }}>
       <IconWrapper><ShoppingCartOutlined /></IconWrapper>
-      <span>Purchased: {dateFormatter(item.purchasedAt)}</span>
+      <span>Purchased: {relativeDate(item.purchasedDate)}</span>
       <br />
       <IconWrapper><DollarCircleOutlined /></IconWrapper>
       {remainingUses > 0 ?

@@ -14,7 +14,7 @@ const purchases = {
     usageCost: 1,
     currentUses: 5,
     expectedUses: 100,
-    purchasedAt: 1636709651,
+    purchasedDate: '2021-11-12',
   },
   '569ce2c1-41fe-468a-8135-f4c285ae9a32': {
     id: '569ce2c1-41fe-468a-8135-f4c285ae9a32',
@@ -23,7 +23,7 @@ const purchases = {
     usageCost: 0.25,
     currentUses: 301,
     expectedUses: 300,
-    purchasedAt: 1605519251,
+    purchasedDate: '2020-11-16',
   },
 };
 

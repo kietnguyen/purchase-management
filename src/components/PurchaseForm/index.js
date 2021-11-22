@@ -48,19 +48,17 @@ const PurchaseForm = () => {
     } else {
       setFormTitle(`Edit Purchase #${purchase.id}`);
       setFormButton(`Update`);
-      form.setFieldsValue({ ...purchase, purchasedDate: moment.unix(purchase.purchasedAt) });
+      form.setFieldsValue({ ...purchase, purchasedDate: moment(purchase.purchasedDate) });
     }
   }, [purchase, form]);
 
   const onSubmit = () => {
     const formPurchase = form.getFieldsValue();
     const combinedPurchase = {
+      ...formPurchase,
       id: purchase.id || uuid(),
-      name: formPurchase.name,
-      price: formPurchase.price,
-      usageCost: formPurchase.usageCost,
-      purchasedAt: parseInt(moment(formPurchase.purchasedDate).format('X')),
       currentUses: purchase.currentUses || 0,
+      purchasedDate: formPurchase.purchasedDate.format(dateFormat),
       expectedUses: Math.ceil(formPurchase.price / formPurchase.usageCost),
     };
     if (isEmpty(purchase)) {
@@ -74,9 +72,7 @@ const PurchaseForm = () => {
     form.resetFields();
   };
 
-  const onCancel = () => {
-    dispatch(editPurchase({}));
-  };
+  const onCancel = () => dispatch(editPurchase({}));
 
   return (
     <Content>
