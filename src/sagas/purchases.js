@@ -2,10 +2,12 @@ import axios from 'axios';
 import { call, put, takeLeading, takeLatest } from 'redux-saga/effects';
 import { getPurchases, types } from '../actions/purchases';
 
+const SERVER = 'http://localhost:4001';
+
 function* addPurchase({ payload }) {
   try {
     const { purchase } = payload;
-    yield call(axios.post, 'http://localhost:3001/purchases', purchase);
+    yield call(axios.post, `${SERVER}/purchases`, purchase);
   } catch (e) {
     console.log(e);
   }
@@ -14,7 +16,7 @@ function* addPurchase({ payload }) {
 function* addProductUse({ payload }) {
   try {
     const { id } = payload;
-    yield call(axios.post, `http://localhost:3001/purchases/${id}/use`);
+    yield call(axios.post, `${SERVER}/purchases/${id}/use`);
   } catch (e) {
     console.log(e);
   }
@@ -22,7 +24,7 @@ function* addProductUse({ payload }) {
 
 function* fetchPurchases() {
   try {
-    const { data } = yield call(axios.get, 'http://localhost:3001/purchases');
+    const { data } = yield call(axios.get, `${SERVER}/purchases`);
     yield put(getPurchases(data));
   } catch (e) {
     console.error(e);

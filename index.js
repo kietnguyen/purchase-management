@@ -46,6 +46,6 @@ app.post('/purchases/:id/use', (req, res) => {
   res.send(purchase);
 });
 
-app.listen(3001, () => {
-  console.log('Listening to port 3001');
+app.listen(4001, () => {
+  console.log('Listening to port 4001');
 });
