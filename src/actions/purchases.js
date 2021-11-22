@@ -3,6 +3,7 @@ export const types = {
   ADD_PURCHASE: 'ADD_PURCHASE',
   FETCH_PURCHASES: 'FETCH_PURCHASES',
   GET_PURCHASES: 'GET_PURCHASES',
+  UPDATE_PURCHASE: 'UPDATE_PURCHASE',
 };
 
 export const addPurchase = (purchase) => {
@@ -19,4 +20,8 @@ export const fetchPurchases = () => {
 
 export const getPurchases = (purchases) => {
   return { type: types.GET_PURCHASES, payload: { purchases } };
+};
+
+export const updatePurchase = (purchase) => {
+  return { type: types.UPDATE_PURCHASE, payload: { purchase } };
 };

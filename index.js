@@ -46,6 +46,13 @@ app.post('/purchases/:id/use', (req, res) => {
   res.send(purchase);
 });
 
+app.put('/purchases/:id', (req, res) => {
+  const purchase = req.body;
+  purchases[purchase.id] = purchase;
+
+  res.status(200).send(purchase);
+});
+
 app.listen(4001, () => {
   console.log('Listening to port 4001');
 });

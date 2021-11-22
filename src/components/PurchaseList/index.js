@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { fetchPurchases } from '../../actions/purchases';
 import { Content } from '../common/styles';
-import PurchaseItem from './purchaseItem';
+import PurchaseItem from './PurchaseItem';
 
 const { Title } = Typography;
 
