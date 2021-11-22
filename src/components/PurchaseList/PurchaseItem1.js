@@ -1,11 +1,12 @@
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
-import { List as AntList, Progress } from 'antd';
+import { List as AntList, Progress, Typography } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addProductUse } from '../../actions/purchases';
 import PurchaseItemDescription from './PurchaseItemDescription';
 
 const { Item } = AntList;
+const { Link } = Typography;
 
 const itemUsageProgress = (current, total) => {
   const percent = current / total * 100;
@@ -23,10 +24,12 @@ const PurchaseItem = ({ item, ...props }) => {
   return (
     <Item
       actions={[
-        <CheckCircleFilled
-          onClick={() => dispatch(addProductUse(item.id))}
-          style={{ fontSize: '2rem', color: '#1890ff' }}
-        />,
+        <Link>
+          <CheckCircleFilled
+            onClick={() => dispatch(addProductUse(item.id))}
+            style={{ fontSize: '2rem' }}
+          /><br />Use
+        </Link>,
       ]}
       {...props}
     >
