@@ -3,7 +3,8 @@ import { Card, Col, Row, Statistic, Typography } from 'antd';
 import { sumBy } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPurchases } from '../../actions/purchases';
+
+import { fetchPurchases } from '../../actions/purchases';
 import { priceFormatter } from '../../utils/currency';
 import { Content, IconWrapper } from '../common/styles';
 
@@ -22,7 +23,7 @@ const Overview = () => {
   }, [purchases]);
 
   useEffect(() => {
-    dispatch(getPurchases());
+    dispatch(fetchPurchases());
   }, [dispatch]);
 
   return (
