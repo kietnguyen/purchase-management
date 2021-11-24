@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import { editPurchase } from '../../actions/purchase';
+import { resetPurchase } from '../../actions/purchase';
 import { addPurchase, updatePurchase } from '../../actions/purchases';
 import { dateFormat } from '../../utils/datetime';
 import { Content } from '../common/styles';
@@ -66,13 +66,9 @@ const PurchaseForm = () => {
     } else {
       dispatch(updatePurchase(combinedPurchase));
     }
-
-    setFormTitle(`Add a new Purchase`);
-    setFormButton(`Add`);
-    form.resetFields();
   };
 
-  const onCancel = () => dispatch(editPurchase({}));
+  const onCancel = () => dispatch(resetPurchase());
 
   return (
     <Content>
