@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Divider } from 'antd';
+import './App.less';
+import PurchaseList from './components/PurchaseList';
+import Layout from './components/Layout';
+import Overview from './components/Overview';
+import PurchaseForm from './components/PurchaseForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Overview />
+      <Divider />
+      <PurchaseList />
+      <Divider />
+      <PurchaseForm />
+    </Layout>
   );
 }
 
