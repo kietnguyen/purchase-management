@@ -1,0 +1,3 @@
+[submodule "api"]
+	path = api
+	url = git@github:kietnguyen/purchase-management-api.git
