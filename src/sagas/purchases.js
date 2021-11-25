@@ -3,7 +3,8 @@ import { call, put, takeLatest, takeLeading } from 'redux-saga/effects';
 import { resetPurchase } from '../actions/purchase';
 import { getPurchases, types } from '../actions/purchases';
 
-const SERVER = 'http://localhost:4001';
+const isProduction = process.env.NODE_ENV === 'production';
+const SERVER = isProduction ? 'https://purchase-management-demo.herokuapp.com' : 'http://localhost:4001';
 
 function* addPurchase({ payload }) {
   try {
