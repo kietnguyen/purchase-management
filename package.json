@@ -28,9 +28,7 @@
     "start": "PORT=4000 craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject",
-    "server": "nodemon index.js",
-    "start:all": "concurrently 'yarn start' 'yarn server'"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -51,11 +49,6 @@
     ]
   },
   "devDependencies": {
-    "body-parser": "^1.19.0",
-    "concurrently": "^6.4.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.15",
     "redux-devtools-extension": "^2.13.9"
   }
 }

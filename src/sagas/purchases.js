@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { call, put, takeLatest, takeLeading } from 'redux-saga/effects';
+import { resetPurchase } from '../actions/purchase';
 import { getPurchases, types } from '../actions/purchases';
 
 const SERVER = 'http://localhost:4001';
@@ -8,6 +9,7 @@ function* addPurchase({ payload }) {
   try {
     const { purchase } = payload;
     yield call(axios.post, `${SERVER}/purchases`, purchase);
+    yield put(resetPurchase());
   } catch (e) {
     console.log(e);
   }
@@ -44,6 +46,7 @@ function* updatePurchase({ payload }) {
   try {
     const { purchase } = payload;
     yield call(axios.put, `${SERVER}/purchases/${purchase.id}`, purchase);
+    yield put(resetPurchase());
   } catch (e) {
     console.error(e);
   }
