@@ -1,0 +1,55 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup git
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade
+          sudo apt-get install -y git
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+          token: ${{ secrets.GH_TOKEN }}
+      - run: yarn install
+      - run: yarn build
+      - name: Setup Heroku login credentials
+        run: |
+          cat > ~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+          EOF
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      - name: Add Heroku remote
+        run: heroku git:remote --app $HEROKU_APP_NAME
+        working-directory: api
+        env:
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      - name: Configure git
+        run: |
+          git config user.name 'Heroku GitHub-Actions'
+          git config user.email $HEROKU_EMAIL
+        working-directory: api
+        env:
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      - name: Push to Heroku
+        run: |
+          git add -A
+          git commit -m "Commit changes from previous actions"
+          git push heroku HEAD:master --force
+        working-directory: api
