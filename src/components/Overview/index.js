@@ -1,6 +1,6 @@
 import { ProfileOutlined, WalletOutlined } from '@ant-design/icons';
 import { Card, Col, Row, Statistic, Typography } from 'antd';
-import { sumBy } from 'lodash';
+import sumBy from 'lodash/sumBy';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
