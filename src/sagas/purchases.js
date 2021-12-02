@@ -1,15 +1,12 @@
-import axios from 'axios';
 import { call, put, takeLatest, takeLeading } from 'redux-saga/effects';
 import { resetPurchase } from '../actions/purchase';
 import { getPurchases, types } from '../actions/purchases';
-
-const isProduction = process.env.NODE_ENV === 'production';
-const SERVER = isProduction ? 'https://purchase-management-demo.herokuapp.com' : 'http://localhost:4001';
+import axios from '../config/axiosInstance';
 
 function* addPurchase({ payload }) {
   try {
     const { purchase } = payload;
-    yield call(axios.post, `${SERVER}/purchases`, purchase);
+    yield call(axios.post, `/purchases`, purchase);
     yield put(resetPurchase());
   } catch (e) {
     console.log(e);
@@ -19,7 +16,7 @@ function* addPurchase({ payload }) {
 function* addProductUse({ payload }) {
   try {
     const { id } = payload;
-    yield call(axios.post, `${SERVER}/purchases/${id}/use`);
+    yield call(axios.post, `/purchases/${id}/use`);
   } catch (e) {
     console.log(e);
   }
@@ -27,7 +24,7 @@ function* addProductUse({ payload }) {
 
 function* fetchPurchases() {
   try {
-    const { data } = yield call(axios.get, `${SERVER}/purchases`);
+    const { data } = yield call(axios.get, `/purchases`);
     yield put(getPurchases(data));
   } catch (e) {
     console.error(e);
@@ -37,7 +34,7 @@ function* fetchPurchases() {
 function* removePurchase({ payload }) {
   try {
     const { id } = payload;
-    yield call(axios.delete, `${SERVER}/purchases/${id}`);
+    yield call(axios.delete, `/purchases/${id}`);
   } catch (e) {
     console.error(e);
   }
@@ -46,7 +43,7 @@ function* removePurchase({ payload }) {
 function* updatePurchase({ payload }) {
   try {
     const { purchase } = payload;
-    yield call(axios.put, `${SERVER}/purchases/${purchase.id}`, purchase);
+    yield call(axios.put, `/purchases/${purchase.id}`, purchase);
     yield put(resetPurchase());
   } catch (e) {
     console.error(e);
