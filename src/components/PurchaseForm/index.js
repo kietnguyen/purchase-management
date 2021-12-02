@@ -1,5 +1,5 @@
 import { Button, DatePicker, Form, Input, Space, Typography } from 'antd';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
