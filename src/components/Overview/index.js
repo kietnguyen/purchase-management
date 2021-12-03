@@ -2,9 +2,7 @@ import { ProfileOutlined, WalletOutlined } from '@ant-design/icons';
 import { Card, Col, Row, Statistic, Typography } from 'antd';
 import sumBy from 'lodash/sumBy';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { fetchPurchases } from '../../actions/purchases';
+import { useSelector } from 'react-redux';
 import { priceFormatter } from '../../utils/currency';
 import { Content, IconWrapper } from '../common/styles';
 
@@ -12,7 +10,6 @@ const { Title } = Typography;
 
 const Overview = () => {
   const purchases = useSelector((state) => state.purchases);
-  const dispatch = useDispatch();
 
   const [totalSpent, setTotalSpent] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -21,10 +18,6 @@ const Overview = () => {
     setTotalSpent(sumBy(purchases, 'price'));
     setTotalItems(purchases.length);
   }, [purchases]);
-
-  useEffect(() => {
-    dispatch(fetchPurchases());
-  }, [dispatch]);
 
   return (
     <Content style={{ marginTop: 0 }}>

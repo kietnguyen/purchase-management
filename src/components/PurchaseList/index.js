@@ -1,8 +1,7 @@
 import { Col, List as AntList, Row, Typography } from 'antd';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { fetchPurchases } from '../../actions/purchases';
 import { Content } from '../common/styles';
 import PurchaseItem from './PurchaseItem';
 
@@ -20,11 +19,6 @@ const List = styled(({ children, ...props }) =>
 
 const PurchaseList = () => {
   const purchases = useSelector((state) => state.purchases);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPurchases());
-  }, [dispatch]);
 
   return (
     <Content>
