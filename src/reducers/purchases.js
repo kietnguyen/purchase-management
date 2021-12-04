@@ -1,32 +1,64 @@
+import sumBy from 'lodash/sumBy';
 import { types } from '../actions/purchases';
+import { priceFormatter } from '../utils/currency';
+
+const getStatistics = (purchases) => {
+  return {
+    totalSpent: priceFormatter(sumBy(purchases, 'price')),
+    totalItems: purchases.length,
+  };
+};
+
+const addPurchase = (state, { purchase }) => {
+  const { purchases } = state;
+  const newPurchases = [...purchases, purchase];
+
+  return { statistics: getStatistics(newPurchases), purchases: newPurchases };
+};
 
 const addProductUse = (state, { id }) => {
-  const purchaseIndex = state.findIndex((purchase) => purchase.id === id);
-  return [
-    ...state.slice(0, purchaseIndex),
-    { ...state[purchaseIndex], currentUses: state[purchaseIndex].currentUses + 1 },
-    ...state.slice(purchaseIndex + 1),
+  const { purchases } = state;
+  const index = purchases.findIndex((purchase) => purchase.id === id);
+  const purchase = purchases[index];
+  const newPurchases = [
+    ...purchases.slice(0, index),
+    { ...purchase, currentUses: purchase.currentUses + 1 },
+    ...purchases.slice(index + 1),
   ];
+
+  return { ...state, purchases: newPurchases };
+};
+
+const getPurchases = (state, { purchases }) => {
+  return { statistics: getStatistics(purchases), purchases };
 };
 
 const removePurchase = (state, { id }) => {
-  const purchaseIndex = state.findIndex((p) => p.id === id);
-  return [...state.slice(0, purchaseIndex), ...state.slice(purchaseIndex + 1)];
+  const { purchases } = state;
+  const index = purchases.findIndex((p) => p.id === id);
+  const newPurchases = [...purchases.slice(0, index), ...purchases.slice(index + 1)];
+
+  return { statistics: getStatistics(newPurchases), purchases: newPurchases };
 };
 
 const updatePurchase = (state, { purchase }) => {
-  const purchaseIndex = state.findIndex((p) => p.id === purchase.id);
-  return [...state.slice(0, purchaseIndex), { ...purchase }, ...state.slice(purchaseIndex + 1)];
+  const { purchases } = state;
+  const index = purchases.findIndex((p) => p.id === purchase.id);
+  const newPurchases = [...purchases.slice(0, index), purchase, ...purchases.slice(index + 1)];
+
+  return { statistics: getStatistics(newPurchases), purchases: newPurchases };
 };
 
-const purchasesReducer = (state = [], action) => {
+const initialState = { purchases: [], statistics: { totalItems: 0, totalSpent: 0 } };
+
+const purchasesReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_PURCHASE:
-      return state.concat(action.payload.purchase);
+      return addPurchase(state, action.payload);
     case types.ADD_PRODUCT_USE:
       return addProductUse(state, action.payload);
     case types.GET_PURCHASES:
-      return action.payload.purchases;
+      return getPurchases(state, action.payload);
     case types.REMOVE_PURCHASE:
       return removePurchase(state, action.payload);
     case types.UPDATE_PURCHASE:

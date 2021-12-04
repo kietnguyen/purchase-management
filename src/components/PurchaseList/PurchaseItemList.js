@@ -15,7 +15,7 @@ const List = styled(({ children, ...props }) =>
 `;
 
 const PurchaseItemList = () => {
-  const purchases = useSelector((state) => state.purchases);
+  const purchases = useSelector((state) => state.purchases.purchases);
 
   return (
     <List
