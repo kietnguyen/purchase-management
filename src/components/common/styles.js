@@ -8,8 +8,9 @@ export const IconWrapper = styled.span`
   font-size: 1.125rem;
 `;
 
-export const Content = styled(({ children, ...props }) =>
-  <AntContent {...props}>{children}</AntContent>)`
+export const Content = styled(({ children, ...props }) => (
+  <AntContent {...props}>{children}</AntContent>
+))`
   margin-top: 16px;
   margin-bottom: 16px;
 `;

@@ -20,17 +20,27 @@ const PurchaseItemDescription = ({ item }) => {
 
   return (
     <span style={{ verticalAlign: 'middle' }}>
-      <IconWrapper><ShoppingCartOutlined /></IconWrapper>
+      <IconWrapper>
+        <ShoppingCartOutlined />
+      </IconWrapper>
       <span>Purchased: {relativeDate(item.purchasedDate)}</span>
       <br />
-      <IconWrapper><DollarCircleOutlined /></IconWrapper>
-      {remainingUses > 0 ?
-        <span>Remaining uses: {remainingUses}</span> :
-        <span>Enjoy it while it lasts!!!</span>}
+      <IconWrapper>
+        <DollarCircleOutlined />
+      </IconWrapper>
+      {remainingUses > 0 ? (
+        <span>Remaining uses: {remainingUses}</span>
+      ) : (
+        <span>Enjoy it while it lasts!!!</span>
+      )}
       <br />
       <Space size='large'>
-        <Link onClick={() => dispatch(editPurchase(item))}><EditOutlined /> Edit</Link>
-        <Link onClick={() => dispatch(removePurchase(item.id))}><DeleteOutlined /> Delete</Link>
+        <Link onClick={() => dispatch(editPurchase(item))}>
+          <EditOutlined /> Edit
+        </Link>
+        <Link onClick={() => dispatch(removePurchase(item.id))}>
+          <DeleteOutlined /> Delete
+        </Link>
       </Space>
     </span>
   );

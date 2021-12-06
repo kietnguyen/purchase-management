@@ -10,10 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 middlewares.push(sagaMiddleware);
 
 const configureStore = () => {
-  const store = createStore(
-    reducers,
-    composeWithDevTools(applyMiddleware(...middlewares)),
-  );
+  const store = createStore(reducers, composeWithDevTools(applyMiddleware(...middlewares)));
   sagaMiddleware.run(sagas);
 
   return store;
