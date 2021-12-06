@@ -6,13 +6,13 @@ import { addProductUse } from '../../actions/purchases';
 import PurchaseItemDescription from './PurchaseItemDescription';
 
 const { Item } = AntList;
-const { Link, Text } = Typography;
+const { Link } = Typography;
 
 const UsageProgress = ({ percent }) => {
-  return percent >= 100 ? (
-    <CheckCircleOutlined style={{ fontSize: '24px', color: '#1da57a' }} />
-  ) : (
+  return percent < 100 ? (
     <Progress type='circle' percent={percent} width={24} strokeWidth={12} showInfo={false} />
+  ) : (
+    <CheckCircleOutlined style={{ fontSize: '24px', color: '#1da57a' }} />
   );
 };
 
@@ -36,11 +36,10 @@ const UseButton = ({ id, percent }) => {
 };
 
 const PurchaseItem = ({ item }) => {
-  const dispatch = useDispatch();
-  const percent = (item.currentUses / item.expectedUses) * 100;
+  return useMemo(() => {
+    const percent = (item.currentUses / item.expectedUses) * 100;
 
-  return useMemo(
-    () => (
+    return (
       <Item actions={[<UseButton id={item.id} percent={percent} />]}>
         <Item.Meta
           avatar={<UsageProgress percent={percent} />}
@@ -48,9 +47,8 @@ const PurchaseItem = ({ item }) => {
           description={<PurchaseItemDescription item={item} />}
         />
       </Item>
-    ),
-    [dispatch, item]
-  );
+    );
+  }, [item]);
 };
 
 export default PurchaseItem;
