@@ -9,10 +9,10 @@ const { Item } = AntList;
 const { Link, Text } = Typography;
 
 const UsageProgress = ({ percent }) => {
-  return (
-    percent >= 100 ?
-      <CheckCircleOutlined style={{ fontSize: '24px', color: '#1da57a' }} /> :
-      <Progress type='circle' percent={percent} width={24} strokeWidth={12} showInfo={false} />
+  return percent >= 100 ? (
+    <CheckCircleOutlined style={{ fontSize: '24px', color: '#1da57a' }} />
+  ) : (
+    <Progress type='circle' percent={percent} width={24} strokeWidth={12} showInfo={false} />
   );
 };
 
@@ -20,12 +20,16 @@ const UseButton = ({ id, percent }) => {
   const dispatch = useDispatch();
 
   if (percent < 100) {
-    return <Link>
-      <CheckCircleFilled
-        onClick={() => dispatch(addProductUse(id))}
-        style={{ fontSize: '2rem' }}
-      /><br />Use
-    </Link>;
+    return (
+      <Link>
+        <CheckCircleFilled
+          onClick={() => dispatch(addProductUse(id))}
+          style={{ fontSize: '2rem' }}
+        />
+        <br />
+        Use
+      </Link>
+    );
   }
 
   return <CheckOutlined style={{ color: '#1da57a', fontSize: '2rem' }} />;
@@ -33,7 +37,7 @@ const UseButton = ({ id, percent }) => {
 
 const PurchaseItem = ({ item }) => {
   const dispatch = useDispatch();
-  const percent = item.currentUses / item.expectedUses * 100;
+  const percent = (item.currentUses / item.expectedUses) * 100;
 
   return useMemo(
     () => (
@@ -44,7 +48,8 @@ const PurchaseItem = ({ item }) => {
           description={<PurchaseItemDescription item={item} />}
         />
       </Item>
-    ), [dispatch, item],
+    ),
+    [dispatch, item]
   );
 };
 

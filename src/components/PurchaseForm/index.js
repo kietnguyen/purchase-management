@@ -107,19 +107,18 @@ const PurchaseForm = () => {
           <Input prefix='$' type='number' min={0} step='0.01' />
         </Form.Item>
 
-        <Form.Item
-          label='Purchased date'
-          name='purchasedDate'
-        >
-          <DatePicker
-            format={dateFormat} style={{ width: '100%' }}
-          />
+        <Form.Item label='Purchased date' name='purchasedDate'>
+          <DatePicker format={dateFormat} style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
           <Space size='large' style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button type='primary' style={{ width: '5rem' }} htmlType='submit'>{formButton}</Button>
-            <Button type='secondary' style={{ width: '5rem' }} onClick={onCancel}>Cancel</Button>
+            <Button type='primary' style={{ width: '5rem' }} htmlType='submit'>
+              {formButton}
+            </Button>
+            <Button type='secondary' style={{ width: '5rem' }} onClick={onCancel}>
+              Cancel
+            </Button>
           </Space>
         </Form.Item>
       </Form>

@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import PurchaseItem from './PurchaseItem';
 
-const List = styled(({ children, ...props }) =>
-  <AntList {...props}>{children}</AntList>)`
+const List = styled(({ children, ...props }) => <AntList {...props}>{children}</AntList>)`
   &.ant-list {
     .ant-list-item {
       padding-left: 12px;

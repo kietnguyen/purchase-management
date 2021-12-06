@@ -26,14 +26,10 @@ const Layout = ({ children, ...props }) => {
   return (
     <AntLayout {...props} style={{ backgroundColor: '#fff', ...props.style }}>
       <AppHeader>
-        <Title>
-          Purchase Management
-        </Title>
+        <Title>Purchase Management</Title>
       </AppHeader>
 
-      <AppContent>
-        {children}
-      </AppContent>
+      <AppContent>{children}</AppContent>
     </AntLayout>
   );
 };
