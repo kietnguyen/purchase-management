@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - develop
+      - feature/virtual-list
 
 jobs:
   build:
@@ -22,6 +23,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
       - run: yarn install
       - run: yarn build
+      - run: cp -rf public/* api/public
       - name: Setup Heroku login credentials
         run: |
           cat > ~/.netrc <<EOF
